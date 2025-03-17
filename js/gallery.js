@@ -82,12 +82,9 @@ const markup = images
 gallery.innerHTML = markup;
 function onClick(event) {
   event.preventDefault();
-  if (event.target === event.currentTarget) {
-    return;
-  }
-  const instance = basicLightbox.create(
-    `<img src="${event.target.dataset.source}">`
-  );
+  const image = event.target.closest(".gallery-image");
+  if (!image) return;
+  const instance = basicLightbox.create(`<img src="${image.dataset.source}">`);
   instance.show();
 }
 gallery.addEventListener("click", onClick);
